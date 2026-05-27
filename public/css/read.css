@@ -1,0 +1,81 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7f6;
+  color: #333;
+  padding: 40px 20px;
+}
+
+.d-grid.gap-2,
+table.table {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-primary {
+  background-color: #3498db !important;
+  border-color: #3498db !important;
+  padding: 10px 20px !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 6px rgba(52, 152, 219, 0.1) !important;
+  text-decoration: none !important;
+}
+
+.btn-primary:hover {
+  background-color: #2980b9 !important;
+  border-color: #2980b9 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(52, 152, 219, 0.2) !important;
+}
+
+.justify-content-md-end {
+  margin-bottom: 25px;
+}
+
+table.table {
+  background-color: #ffffff;
+  border-collapse: separate !important;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  border: none !important;
+}
+
+table.table td {
+  padding: 18px 24px !important;
+  font-size: 1rem;
+  vertical-align: middle;
+  border-bottom: 1px solid #edf2f7 !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+table.table tr td:first-child {
+  font-weight: 600;
+  color: #2c3e50;
+  width: 30%;
+  background-color: #fcfdfe;
+}
+
+table.table tr td:last-child {
+  color: #4a5568;
+}
+
+table.table-hover TR:hover TD {
+  background-color: #f8fafc !important;
+}
+
+table.table tr:last-child td {
+  border-bottom: none !important;
+}
+
+table.table tr:nth-child(2) td:last-child {
+  font-weight: 700;
+  color: #2e7d32;
+  /* Colore verde per il prezzo */
+  font-size: 1.1rem;
+}

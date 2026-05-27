@@ -1,0 +1,107 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7f6;
+  color: #333;
+  padding: 40px 20px;
+}
+
+form,
+.alert {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.justify-content-md-end {
+  max-width: 800px;
+  margin: 0 auto 25px auto;
+}
+
+.btn-primary {
+  background-color: #3498db !important;
+  border-color: #3498db !important;
+  padding: 10px 22px !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 6px rgba(52, 152, 219, 0.1) !important;
+}
+
+.btn-primary:hover {
+  background-color: #2980b9 !important;
+  border-color: #2980b9 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(52, 152, 219, 0.2) !important;
+}
+
+table.table {
+  background-color: #ffffff;
+  border-collapse: separate !important;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  border: none !important;
+  margin-bottom: 25px;
+}
+
+table.table td {
+  padding: 16px 20px !important;
+  vertical-align: middle;
+  border-bottom: 1px solid #edf2f7 !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+table.table tr td:first-child {
+  font-weight: 600;
+  color: #2c3e50;
+  width: 25%;
+  background-color: #fcfdfe;
+}
+
+table.table tr:last-child td {
+  border-bottom: none !important;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px 14px !important;
+  font-size: 0.95rem !important;
+  border: 1px solid #dcdde1 !important;
+  border-radius: 6px !important;
+  background-color: #f8f9fa !important;
+  color: #2c3e50 !important;
+  transition: all 0.3s ease !important;
+}
+
+.form-control:focus {
+  outline: none !important;
+  border-color: #3498db !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15) !important;
+}
+
+textarea.form-control {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.alert {
+  padding: 15px 20px !important;
+  border-radius: 8px !important;
+  font-weight: 500;
+  margin-top: 20px;
+  border: none !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.alert-success {
+  background-color: #d4edda !important;
+  color: #155724 !important;
+}
+
+.alert-danger {
+  background-color: #f8d7da !important;
+  color: #721c24 !important;
+}
