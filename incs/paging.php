@@ -11,8 +11,8 @@ echo "<nav aria-label='Page navigation example'>";
 echo "<ul class='pagination'>";
 
 if($page>1){
-    echo "<li class='page-item'><a class='page-link' href='{$page_url}page=1' title='Go to the first page.'>";
-        echo "First";
+    echo "<li class='page-item'><a class='page-link' href='{$page_url}page=1' title='Vai alla prima pagina.'>";
+        echo "Inizio";
     echo "</a></li>";
 }
 
@@ -38,8 +38,8 @@ for ($x=$initial_num; $x<$condition_limit_num; $x++) {
 }
 
 if($page<$total_pages){
-    echo "<li class='page-item'><a class='page-link' href='" .$page_url. "page={$total_pages}' title='Last page is {$total_pages}.'>";
-        echo "Last";
+    echo "<li class='page-item'><a class='page-link' href='" .$page_url. "page={$total_pages}'>";
+        echo "Fine";
     echo "</a></li>";
 }
 
