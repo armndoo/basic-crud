@@ -1,14 +1,17 @@
+<link rel="stylesheet" href="../css/paging.css"/>
+
+
 <?php
 if (!defined('INCLUDED')) {
   http_response_code(404);
-  include '../status-pages/404.html';
+  include '404.html';
   exit();
 }
 echo "<nav aria-label='Page navigation example'>";
 echo "<ul class='pagination'>";
 
 if($page>1){
-    echo "<li class='page-item'><a class='page-link' href='{$page_url}' title='Go to the first page.'>";
+    echo "<li class='page-item'><a class='page-link' href='{$page_url}page=1' title='Go to the first page.'>";
         echo "First";
     echo "</a></li>";
 }
@@ -25,7 +28,7 @@ for ($x=$initial_num; $x<$condition_limit_num; $x++) {
     if (($x > 0) && ($x <= $total_pages)) {
 
         if ($x == $page) {
-            echo "<li class='page-item active'><a class='page-link' href=\"#\">$x <span class=\"sr-only\">(current)</span></a></li>";
+            echo "<li class='page-item active'><a class='page-link' href=\"#\">$x <span class=\"sr-only\"></span></a></li>";
         }
 
         else {

@@ -1,4 +1,11 @@
 <?php
+function debug_to_console($data) {
+    $output = $data;
+    if (is_array($output))
+        $output = implode(',', $output);
+
+    echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+}
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -7,26 +14,28 @@ if (!isset($_SESSION['session_id']) ||  !isset($_SESSION['session_user'])) {
     session_unset();
     session_destroy();
   
-    header("Location: login.php");
+    header("Location: index.html");
     exit();
 }
 
-define('INCLUDED', true);
+    define('INCLUDED', true);
     $page_title = "Dashboard";
-    $page_css = "../css/dashboard.css";
-    include_once "../php-inc/header.php";
+    $page_css = "css/dashboard.css";
+    require_once  __DIR__ . "/incs/header.php";
     
     $page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
-    $records_per_page = 10;
+    $records_per_page = 6;
 
     $from_record_num = ($page * $records_per_page) - $records_per_page;
 
-    include_once '../php-inc/database.php';
-    include_once '../php-inc/category.php';
-    include_once '../php-inc/product.php';
+    require_once __DIR__ .'/config/database.php';
+    require_once __DIR__ .'/src/category.php';
+    require_once __DIR__ . '/src/product.php';
+    require_once __DIR__ . '/incs/isAdmin.php';
 
     $database = new Database();
     $db = $database->getConnection();
+    $isAdmin = isAdmin($db);
 
     $product = new Product($db);
     $category = new Category($db);
@@ -37,10 +46,10 @@ define('INCLUDED', true);
     $page_url = "dashboard.php?";
     $total_rows = $product->countAll();
 
-    include_once '../php-inc/paging.php';
 
-    echo '<div class="d-flex justify-content-md-end gap-2 mb-3"><a href="../logout.php" class="btn btn-primary">Logout</a></div>';
-    echo '<div class="d-flex justify-content-md-end gap-2 mb-3"><a href="../index.html" class="btn btn-primary">Vedi prodotti</a></div>';
+    require_once __DIR__ . '/incs/paging.php';
+
+    echo '<div class="d-flex justify-content-md-end gap-2 mb-3"><a href="logout.php" class="btn btn-primary">Logout</a></div>';
 
     if($num > 0) {
         echo "<table class='table table-hover table-responsive caption-top'>";
@@ -56,7 +65,6 @@ define('INCLUDED', true);
         echo "</thead>";
         echo "<tbody>"; 
 
-               
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         extract($row);
@@ -76,22 +84,33 @@ define('INCLUDED', true);
         echo htmlspecialchars($category->name, ENT_QUOTES, 'UTF-8'); 
         echo "</td>";
         echo "<td>";
-        echo "<div style='display: flex; gap: 5px; align-items: center;'>
-            <a href='read_product.php?id={$safe_id}' class='btn btn-primary btn-sm'>
-                <span class='glyphicon glyphicon-list'></span> Leggi
+        if($isAdmin) {
+         echo "<div style='display: flex; gap: 5px; align-items: center;'>
+            <a href='read_product.php?id={$safe_id}' class='btn btn-primary btn-sm '>
+                Leggi
             </a>
             <a href='update_product.php?id={$safe_id}' class='btn btn-info btn-sm'>
-                <span class='glyphicon glyphicon-edit'></span> Modifica
+                 Modifica
             </a>
             <form action='delete_product.php' method='post' style='margin:0;' onsubmit='return confirm(\"Sei sicuro di voler eliminare questo prodotto?\");'>
                 <input type='hidden' name='object_id' value='{$safe_id}'>
                 <button type='submit' class='btn btn-danger btn-sm'>
-                    <span class='glyphicon glyphicon-remove'></span> Elimina
+                    Elimina
                 </button>
             </form>
         </div>";
         echo "</td>";
-        echo "</tr>";
+        echo "</tr>";   
+        }
+        if(!$isAdmin) {
+             echo "<div style='display: flex; gap: 5px; align-items: center;'>
+                <a href='read_product.php?id={$safe_id}' class='btn btn-primary btn-sm '>
+                    Leggi
+                </a>
+            </div>";
+            echo "</td>";
+            echo "</tr>";
+        }        
     }
 echo "</tbody>";
 echo "</table>";        
@@ -99,7 +118,10 @@ echo "</table>";
         echo "<div class='alert alert-info'>Nessun prodotto trovato!</div>";
     }
 
-    echo '<div class="d-flex justify-content-md-end gap-2 mt-3"><a href="create_product.php" class="btn btn-success">Inserisci prodotto</a></div>';
 
-    include_once "../php-inc/footer.php";
+    if($isAdmin) {
+       echo '<div class="d-flex justify-content-md-end gap-2 mt-3"><a href="create_product.php" class="btn btn-success">Inserisci prodotto</a></div>';
+    }    
+
+    require_once __DIR__ . "/incs/footer.php";
 ?>

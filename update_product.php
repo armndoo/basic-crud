@@ -1,23 +1,37 @@
-
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (!isset($_SESSION['session_id']) ||  !isset($_SESSION['session_user'])) {
+    session_unset();
+    session_destroy();
+  
+    header("Location: index.html");
+    exit();
+}
+    define('INCLUDED', true);
     $page_title = "Modifica prodotto";
-    $page_css = "../css/update.css";
-    include_once '../php-inc/header.php';
+    $page_css = "css/update.css";
+    require_once __DIR__ .'/config/database.php';
+    require_once __DIR__ . '/incs/isAdmin.php';
+
+    $database = new Database();
+    $db = $database->getConnection();
+    checkAdmin($db);
+    require_once __DIR__ .'/incs/header.php';
     
 
     echo '<div class="d-gap gap-2 d-md-flex justify-content-md-end"><a href="dashboard.php" class="btn btn-primary">Vedi prodotti</a></div>';
 
     $id = isset($_GET['id']) ? $_GET['id'] : die('ERROR: missing ID');
 
-    include_once '../php-inc/database.php';
-    include_once '../php-inc/product.php';
-    include_once '../php-inc/category.php';
-
-    $database = new Database();
-    $db = $database->getConnection();
+    require_once __DIR__ .'/src/product.php';
+    require_once __DIR__ .'/src/category.php';
 
     $product = new Product($db);
     $category = new Category($db);
@@ -85,6 +99,6 @@ error_reporting(E_ALL);
         }
     }
 
-    include_once '../php-inc/footer.php';
+    require_once __DIR__ .'/incs/footer.php';
 ?>
 

@@ -4,12 +4,13 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 define('INCLUDED', true);
-require_once "../php-inc/database.php";
+require_once __DIR__  . "/config/database.php";
 
 $database = new Database();
 $db = $database->getConnection();
 
 $msg = ""; 
+$msg2 = ""; 
 
 if (isset($_POST["register"])) {
     $username = trim($_POST["username"] ?? "");
@@ -54,7 +55,7 @@ if (isset($_POST["register"])) {
             $insert->execute();
 
             if ($insert->rowCount() > 0) {
-                $msg = "Registrazione eseguita con successo! <a href='./login.php'>Accedi ora</a>";
+                $msg2 = "Registrazione eseguita con successo! <a href='./login.php'>Accedi ora</a>";
             } else {
                 $msg = "Errore durante l'inserimento dei dati nel database.";
             }
@@ -68,7 +69,7 @@ if (isset($_POST["register"])) {
 <head>
   <meta charset="UTF-8">
   <title>Registrazione</title>
-  <link rel="stylesheet" href="../css/register.css" />
+  <link rel="stylesheet" href="./css/register.css" />
 </head>
 <body>
 
@@ -78,6 +79,12 @@ if (isset($_POST["register"])) {
     <?php if (!empty($msg)): ?>
         <div class="message" style="margin-bottom: 15px; color: red;">
             <?php echo $msg; ?>
+        </div>
+    <?php endif; ?>
+
+    <?php if (!empty($msg2)): ?>
+        <div class="message" style="margin-bottom: 15px; color: green;">
+            <?php echo $msg2; ?>
         </div>
     <?php endif; ?>
 

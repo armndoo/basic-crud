@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 define('INCLUDED', true);
-require_once "../php-inc/database.php";
+require_once __DIR__ . "/config/database.php";
 
 $database = new Database();
 $db = $database->getConnection();
@@ -54,8 +54,8 @@ if (isset($_POST["login"])) {
     <head>
         <meta charset="UTF-8">
         <title>Login</title>
-        <link rel="stylesheet" href="../css/login.css" />
-        <link rel="stylesheet" href="../css/dashboard.css" /> 
+        <link rel="stylesheet" href="./css/login.css" />
+        <link rel="stylesheet" href="./css/dashboard.css" /> 
     </head>
     <body>
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
@@ -82,13 +82,13 @@ if (isset($_POST["login"])) {
                 required
                 placeholder="Password"
             />
-            <button type="submit" name="login" class="btn btn-primary">Login</button>
-            
+           <button type="submit" name="login" class="btn btn-primary">Login</button>         
             <div style="margin-top: 15px; text-align: center;">
                 <a href="./register.php" style="color: #4285f4; text-decoration: none; font-size: 13px;">
                     Non hai creato un account? Registrati adesso
                 </a>
-            </div>
+<br/>                <a href="./admin.php" style="color: #4285f4; text-decoration: none; font-size: 13px;"> Sei un amministratore? Clicca qui. </a>
+                </div>
         </form>
     </body>
 </html>

@@ -136,3 +136,9 @@ caption {
   background-color: #4285f4;
   border-color: #4285f4;
 }
+
+
+.hidden {
+  opacity: 0;
+  display: none;
+}

@@ -1,7 +1,7 @@
 <?php
 if (!defined('INCLUDED')) {
   http_response_code(404);
-  include '../status-pages/404.html';
+  include '404.html';
   exit();
 }
   

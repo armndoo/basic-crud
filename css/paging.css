@@ -1,0 +1,66 @@
+nav[aria-label="Page navigation example"] {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.pagination {
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.page-item {
+  margin: 0;
+}
+
+.page-item .page-link {
+  display: block;
+  padding: 10px 16px;
+  color: #4f46e5;
+  text-decoration: none;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+.page-item .page-link:hover {
+  color: #4338ca;
+  background-color: #f3f4f6;
+  border-color: #d1d5db;
+}
+
+.page-item.active .page-link {
+  z-index: 3;
+  color: #ffffff !important;
+  background-color: #4f46e5 !important;
+  border-color: #4f46e5 !important;
+  cursor: default;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.pagination .page-item:first-child .page-link {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.pagination .page-item:last-child .page-link {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
